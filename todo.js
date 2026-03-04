@@ -24,4 +24,14 @@ if (command === "add") {
   todos.push({ id: newId, content, done: false });
   saveTodos(todos);
   console.log(`Todo가 추가되었습니다: ${content}`);
+} else if (command === "list") {
+  const todos = loadTodos();
+  if (todos.length === 0) {
+    console.log("Todo가 없습니다.");
+  } else {
+    todos.forEach((todo, index) => {
+      const check = todo.done ? "x" : " ";
+      console.log(`[${check}] ${index + 1}. ${todo.content}`);
+    });
+  }
 }
