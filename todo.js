@@ -45,4 +45,16 @@ if (command === "add") {
     saveTodos(todos);
     console.log(`ID ${id}번 항목이 완료되었습니다.`);
   }
+} else if (command === "delete") {
+  const id = parseInt(args[0]);
+  const todos = loadTodos();
+  const index = todos.findIndex((t) => t.id === id);
+  if (index === -1) {
+    console.log("해당 ID를 찾을 수 없습니다.");
+  } else {
+    const [removed] = todos.splice(index, 1);
+    todos.forEach((t, i) => { t.id = i + 1; });
+    saveTodos(todos);
+    console.log(`ID ${id}번 항목이 삭제되었습니다: ${removed.content}`);
+  }
 }
