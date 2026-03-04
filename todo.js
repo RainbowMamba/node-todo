@@ -34,4 +34,15 @@ if (command === "add") {
       console.log(`[${check}] ${index + 1}. ${todo.content}`);
     });
   }
+} else if (command === "done") {
+  const id = parseInt(args[0]);
+  const todos = loadTodos();
+  const todo = todos.find((t) => t.id === id);
+  if (!todo) {
+    console.log("해당 ID를 찾을 수 없습니다.");
+  } else {
+    todo.done = true;
+    saveTodos(todos);
+    console.log(`ID ${id}번 항목이 완료되었습니다.`);
+  }
 }
